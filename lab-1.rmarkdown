@@ -1,0 +1,113 @@
+---
+title: "Lab 1 - Data visualization"
+author: "[Kaley Sperling]"
+format: pdf
+editor: visual
+---
+
+
+## Load Packages
+
+
+```{r}
+#| label: load-packages
+#| message: false
+
+library(tidyverse)
+library(viridis)
+```
+
+
+## Exercise 1
+
+
+```{r}
+
+glimpse(midwest)
+```
+
+```{r}
+#| label: histogram-of-population-density-of-counties
+ggplot(midwest, aes(x=popdensity)) +
+  geom_histogram(binwidth=10000) +
+  labs (x="population density",
+        y="count",
+        title= "population density by county")
+```
+
+
+This is a histogram with a binwidth of 10,000. With this, it is clear to see the data is right-skewed. There appears to be some sort of outlier because there are no counties with a population density of 75000 but there seems to be one with much more than this.
+
+## Exercise 2
+
+
+```{r}
+#| label: scatterplot-college degree-below-poverty
+ggplot(midwest, aes(x=percollege, y=percbelowpoverty, color=state)) +
+  geom_point() +
+  labs( x="% college educated",
+    y="% below poverty line",
+    title= "% college educated vs % below poverty line") +
+  scale_color_viridis_d(option="D" )
+```
+
+
+## Exercise 3
+
+In my scatterplot, I can see that the majority of counties in Midwest states have less than 30% of their population that are college educated and less than 20% below the poverty line. There is one outlier county in WI where very few people are college educated and nearly 50% are below the poverty line. In general, though, Wisconsin has fewer counties with high percentages of people below the poverty line than other states in the Midwest.
+
+## Exercise 4
+
+
+```{r}
+#| label: separate-scatter-for-each-state
+ggplot(midwest, aes(x=percollege, y=percbelowpoverty, color=state)) +
+  geom_point(alpha=0.5) +
+  labs( x="% college educated",
+    y="% below poverty line",
+    title= "% college educated vs % below poverty line") +
+  scale_color_viridis_d(option="D" ) +
+  facet_wrap("state") +
+  geom_smooth(se=FALSE, color="black")
+```
+
+
+I much prefer this plot. It makes it easier to see the overall pattern and therefore relationship between the two variables. Also, the data by state is no longer on top of one another.
+
+## Exercise 5
+
+
+```{r}
+#| label: areas-of-counties-by-state} 
+ggplot(midwest, aes(x=area)) + 
+  geom_boxplot() +
+  facet_wrap("state")
+```
+
+
+It seems that some states have larger county areas than others. On average (Q2), counties in WI have the more area than other states. However, Michigan has the county with the largest area in the Midwest. I can tell because the tail in Q4, the last data point, is the furthest to the right for MI.
+
+## Exercise 6
+
+
+```{r}
+#| label: percentage-of-counties-in-metro-areas} 
+ midwest <- midwest |> 
+   mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+ ggplot(midwest, aes(x=state,fill=metro)) +
+   geom_bar(position="fill") +
+   labs( x="state",
+    y="% metro",
+    title= "% of counties in metro areas")
+```
+
+
+I notice that Ohio and Indiana have the most counties in metropolitan areas and Wisconsin and Illinois have the least.
+
+## Exercise 7
+
+
+```{r}
+
+```
+
