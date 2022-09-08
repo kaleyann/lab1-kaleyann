@@ -94,5 +94,13 @@ I notice that Ohio and Indiana have the most counties in metropolitan areas and 
 ## Exercise 7
 
 ```{r}
-
+#| label: recreating-plot
+ggplot(midwest, aes(x=percollege, y=popdensity, color=percbelowpoverty)) +
+  geom_point(alpha=0.5, size=2) +
+  labs( x="% college educated",
+    y="population density (person/unit area)",
+    title= "Do people with college degrees tend to live in denser areas?",
+    color="% below \n poverty line") +
+  facet_wrap("state") +
+  theme_minimal()
 ```
