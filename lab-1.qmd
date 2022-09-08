@@ -23,9 +23,12 @@ glimpse(midwest)
 ```
 
 ```{r}
-#|histogram of population density of counties
+#|histogram-of-population-density-of-counties
 ggplot(midwest, aes(x=popdensity)) +
-  geom_histogram(binwidth=10000)
+  geom_histogram(binwidth=10000) +
+  labs (x="population density",
+        y="count",
+        title= "population density by county")
 ```
 
 This is a histogram with a binwidth of 10,000. With this, it is clear to see the data is right-skewed. There appears to be some sort of outlier because there are no counties with a population density of 75000 but there seems to be one with much more than this.
@@ -33,7 +36,7 @@ This is a histogram with a binwidth of 10,000. With this, it is clear to see the
 ## Exercise 2
 
 ```{r}
-#| scatterplot - college degree - below poverty
+#| scatterplot-college degree-below-poverty
 ggplot(midwest, aes(x=percollege, y=percbelowpoverty, color=state)) +
   geom_point() +
   labs( x="% college educated",
@@ -44,9 +47,7 @@ ggplot(midwest, aes(x=percollege, y=percbelowpoverty, color=state)) +
 
 ## Exercise 3
 
-```{r}
-
-```
+In my scatterplot, I can see that the majority of counties in midwest states have less than 30% of their population that are college educated and less than 20% below the poverty line. There is one outlier county in WI where very few people are college educated and nearly 50% are below the poverty line. In general, though, Wisconsin has fewer counties with high percentages of people below the poverty line than other states in the Midwest.
 
 ## Exercise 4
 
