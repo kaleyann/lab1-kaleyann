@@ -47,13 +47,23 @@ ggplot(midwest, aes(x=percollege, y=percbelowpoverty, color=state)) +
 
 ## Exercise 3
 
-In my scatterplot, I can see that the majority of counties in midwest states have less than 30% of their population that are college educated and less than 20% below the poverty line. There is one outlier county in WI where very few people are college educated and nearly 50% are below the poverty line. In general, though, Wisconsin has fewer counties with high percentages of people below the poverty line than other states in the Midwest.
+In my scatterplot, I can see that the majority of counties in Midwest states have less than 30% of their population that are college educated and less than 20% below the poverty line. There is one outlier county in WI where very few people are college educated and nearly 50% are below the poverty line. In general, though, Wisconsin has fewer counties with high percentages of people below the poverty line than other states in the Midwest.
 
 ## Exercise 4
 
 ```{r}
-
+#|separate-scatter-for-each-state
+ggplot(midwest, aes(x=percollege, y=percbelowpoverty, color=state)) +
+  geom_point(alpha=0.5) +
+  labs( x="% college educated",
+    y="% below poverty line",
+    title= "% college educated vs % below poverty line") +
+  scale_color_viridis_d(option="D" ) +
+  facet_wrap("state") +
+  geom_smooth(se=FALSE, color="black")
 ```
+
+I much prefer this plot. It makes it easier to see the overall pattern and therefore relationship between the two variables. Also, the data by state is no longer on top of one another.
 
 ## Exercise 5
 
