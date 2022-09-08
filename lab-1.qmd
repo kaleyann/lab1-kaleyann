@@ -68,7 +68,7 @@ I much prefer this plot. It makes it easier to see the overall pattern and there
 ## Exercise 5
 
 ```{r}
-#| label: areas-of-counties-by-state} 
+#| label: areas-of-counties-by-state
 ggplot(midwest, aes(x=area)) + 
   geom_boxplot() +
   facet_wrap("state")
@@ -79,7 +79,7 @@ It seems that some states have larger county areas than others. On average (Q2),
 ## Exercise 6
 
 ```{r}
-#| label: percentage-of-counties-in-metro-areas} 
+#| label: percentage-of-counties-in-metro-areas 
  midwest <- midwest |> 
    mutate(metro = if_else(inmetro == 1, "Yes", "No"))
  ggplot(midwest, aes(x=state,fill=metro)) +
