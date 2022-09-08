@@ -1,6 +1,6 @@
 ---
 title: "Lab 1 - Data visualization"
-author: "[INSERT NAME]"
+author: "[Kaley Sperling]"
 format: pdf
 editor: visual
 ---
@@ -12,27 +12,62 @@ editor: visual
 #| message: false
 
 library(tidyverse)
+library(viridis)
 ```
 
 ## Exercise 1
 
-(Type your answer to Exercise 1 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+```{r}
+
+glimpse(midwest)
+```
+
+```{r}
+#|histogram of population density of counties
+ggplot(midwest, aes(x=popdensity)) +
+  geom_histogram(binwidth=10000)
+```
+
+This is a histogram with a binwidth of 10,000. With this, it is clear to see the data is right-skewed. There appears to be some sort of outlier because there are no counties with a population density of 75000 but there seems to be one with much more than this.
 
 ## Exercise 2
 
-(Type your answer to Exercise 2 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+```{r}
+#| scatterplot - college degree - below poverty
+ggplot(midwest, aes(x=percollege, y=percbelowpoverty, color=state)) +
+  geom_point() +
+  labs( x="% college educated",
+    y="% below poverty line",
+    title= "% college educated vs % below poverty line") +
+  scale_color_viridis_d(option="D" )
+```
 
 ## Exercise 3
 
-(Type your answer to Exercise 3 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+```{r}
+
+```
 
 ## Exercise 4
 
+```{r}
+
+```
 
 ## Exercise 5
 
+```{r}
+
+```
 
 ## Exercise 6
 
+```{r}
+
+```
 
 ## Exercise 7
+
+```{r}
+
+```
