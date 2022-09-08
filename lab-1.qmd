@@ -23,7 +23,7 @@ glimpse(midwest)
 ```
 
 ```{r}
-#|histogram-of-population-density-of-counties
+#| label: histogram-of-population-density-of-counties
 ggplot(midwest, aes(x=popdensity)) +
   geom_histogram(binwidth=10000) +
   labs (x="population density",
@@ -36,7 +36,7 @@ This is a histogram with a binwidth of 10,000. With this, it is clear to see the
 ## Exercise 2
 
 ```{r}
-#| scatterplot-college degree-below-poverty
+#| label: scatterplot-college degree-below-poverty
 ggplot(midwest, aes(x=percollege, y=percbelowpoverty, color=state)) +
   geom_point() +
   labs( x="% college educated",
@@ -52,7 +52,7 @@ In my scatterplot, I can see that the majority of counties in Midwest states hav
 ## Exercise 4
 
 ```{r}
-#|separate-scatter-for-each-state
+#| label: separate-scatter-for-each-state
 ggplot(midwest, aes(x=percollege, y=percbelowpoverty, color=state)) +
   geom_point(alpha=0.5) +
   labs( x="% college educated",
@@ -68,14 +68,28 @@ I much prefer this plot. It makes it easier to see the overall pattern and there
 ## Exercise 5
 
 ```{r}
-
+#| label: areas-of-counties-by-state} 
+ggplot(midwest, aes(x=area)) + 
+  geom_boxplot() +
+  facet_wrap("state")
 ```
+
+It seems that some states have larger county areas than others. On average (Q2), counties in WI have the more area than other states. However, Michigan has the county with the largest area in the Midwest. I can tell because the tail in Q4, the last data point, is the furthest to the right for MI.
 
 ## Exercise 6
 
 ```{r}
-
+#| label: percentage-of-counties-in-metro-areas} 
+ midwest <- midwest |> 
+   mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+ ggplot(midwest, aes(x=state,fill=metro)) +
+   geom_bar(position="fill") +
+   labs( x="state",
+    y="% metro",
+    title= "% of counties in metro areas")
 ```
+
+I notice that Ohio and Indiana have the most counties in metropolitan areas and Wisconsin and Illinois have the least.
 
 ## Exercise 7
 
